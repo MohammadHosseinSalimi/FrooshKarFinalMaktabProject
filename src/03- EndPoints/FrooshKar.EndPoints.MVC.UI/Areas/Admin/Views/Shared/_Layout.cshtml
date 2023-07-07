@@ -1,0 +1,220 @@
+﻿@using Microsoft.CodeAnalysis.Scripting
+@using FrooshKar.Frameworks
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" class="rtl">
+<head>
+    <title>@ViewData["Title"]</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="قالب مدیریت ایرانی مدیران ">
+    <meta name="keywords" content="قالب مدیریت, قالب داشبورد, قالب ادمین, قالب مدیران, قالب مدیریت راستچین , قالب ایرانی مدیریت, پوسته مدیریت, قالب ادمین داشبورد سایت, قالب مدیریتی, مدیران, قالب مدیریت مدیران, پنل مدیریت, پنل مدیریت مدرن, قالب ادمین متریال, قالب مدیریت بوت استرپ, قالب ادمین بوتسترپ, قالب ادمین سایت, پوسته مدیریتی ایرانی, قالب مدیرتی مدیران ایرانی, بهترین قالب مدیریت, قالب مدیریت ریسپانسیو, قالب مدیریت ارزان, قالب admin">
+    <meta name="fontiran.com:license" content="NE29X">
+    <link rel="shortcut icon" href="~/assets/images/favicon.png">
+
+    <!-- BEGIN CSS -->
+    <link href="~/assets/plugins/bootstrap/bootstrap5/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link href="~/assets/plugins/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <link href="~/assets/plugins/simple-line-icons/css/simple-line-icons.min.css" rel="stylesheet">
+    <link href="~/assets/plugins/font-awesome/css/all.min.css" rel="stylesheet">
+    <link href="~/assets/plugins/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+    <link href="~/assets/plugins/switchery/dist/switchery.min.css" rel="stylesheet">
+    <link href="~/assets/plugins/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
+    <link href="~/assets/plugins/paper-ripple/dist/paper-ripple.min.css" rel="stylesheet">
+    <link href="~/assets/plugins/iCheck/skins/square/_all.css" rel="stylesheet">
+    <link href="~/assets/css/style.css" rel="stylesheet">
+    <link href="~/assets/css/colors.css" rel="stylesheet">
+    <!-- END CSS -->
+    @RenderSection("HeaderCSS",false)
+</head>
+<body class="active-ripple theme-blue fix-header sidebar-extra">
+    <!-- BEGIN LOEADING -->
+    <div id="loader">
+        <div class="spinner"></div>
+    </div><!-- /loader -->
+    <!-- END LOEADING -->
+    <!-- BEGIN HEADER -->
+    <div class="navbar navbar-fixed-top" id="main-navbar">
+        <div class="header-right">
+            <a href="dashboard.html" class="logo-con">
+                <img src="~/assets/images/logo-dark.png" class="img-responsive center-block" alt="لوگو قالب مدیران">
+            </a>
+        </div><!-- /.header-right -->
+        <div class="header-left">
+            <div class="top-bar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" class="btn" id="toggle-sidebar">
+                            <span class="menu"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="btn open" id="toggle-sidebar-top">
+                            <i class="icon-user-following"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="btn" id="toggle-dark-mode">
+                            <i class="icon-bulb"></i>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-left">
+
+
+	                <li class="dropdown dropdown-user">
+                        <a href="#" class="dropdown-toggle dropdown-hover" data-bs-toggle="dropdown">
+                            <img src="~/assets/images/user/48.png" alt="عکس پرفایل" class="img-circle img-responsive">
+                            <span>@User.Identity.Name</span>
+                            <i class="icon-arrow-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+	                        <li class="divider"></li>
+                            <li>
+                                <a asp-area="Admin" asp-controller="Account" asp-action="Logout">
+                                    <i class="icon-power"></i>
+                                    خروج
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul><!-- /.navbar-left -->
+            </div><!-- /.top-bar -->
+        </div><!-- /.header-left -->
+    </div><!-- /.navbar -->
+    <!-- END HEADER -->
+    <!-- BEGIN WRAPPER -->
+    <div id="wrapper">
+
+        <!-- BEGIN SIDEBAR -->
+        <div id="sidebar">
+            <div class="sidebar-top">
+	            <div class="user-box">
+                    <a href="#">
+                        <img src="~/assets/images/user/48.png" alt="عکس پروفایل" class="img-circle img-responsive">
+                    </a>
+                    <div class="user-details">
+                        <h5>@User.Identity.Name</h5>
+                        <p class="role">مسئول اصلی سایت</p>
+
+                    </div><!-- /.user-details -->
+                </div><!-- /.user-box -->
+            </div><!-- /.sidebar-top -->
+            <div class="side-menu-container">
+                <ul class="metismenu" id="side-menu">
+	                <li>
+		                <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="dropdown-toggle">
+			                <i class="icon-home"></i>
+			                <span>پیشخوان</span>
+		                </a>
+	                </li>
+	                <li>
+		                <a asp-area="Admin" asp-controller="Category" asp-action="Index" class="dropdown-toggle">
+			                <i class="icon-home"></i>
+			                <span>مدیریت دسته بندی ها</span>
+		                </a>
+	                </li>
+                    <li>
+                        <a asp-area="Admin" asp-controller="Customer" asp-action="Index" class="dropdown-toggle">
+                            <i class="icon-frame"></i>
+                            <span>مدیریت مشتری ها</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-area="Admin" asp-controller="Vendor" asp-action="Index" class="dropdown-toggle">
+                            <i class="icon-eye"></i>
+                            <span>مدیریت فروشنده ها</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-area="Admin" asp-controller="FixedPriceProduct" asp-action="Index" class="dropdown-toggle">
+                            <i class="icon-list fa-flip-horizontal"></i>
+                            <span>کالاهای قیمت مقطوع</span>
+                        </a>
+                    </li>
+	                <li>
+                        <a asp-area="Admin" asp-controller="BidProduct" asp-action="Index" class="dropdown-toggle">
+			                <i class="icon-pie-chart"></i>
+			                <span>کالاهای مزایده ای</span>
+		                </a>
+	                </li>
+                    <li>
+                        <a asp-area="Admin" asp-controller="Comment" asp-action="Index" class="dropdown-toggle">
+                            <i class="icon-layers"></i>
+                            <span>نظرات کاربران</span>
+                        </a>
+	                <li>
+                        <a asp-area="Admin" asp-controller="Wage" asp-action="Index" class="dropdown-toggle">
+                            <i class="icon-exclamation"></i>
+                            <span>کارمزدهای دریافتی</span>
+                        </a>
+                    </li>
+                </ul><!-- /#side-menu -->
+            </div><!-- /.side-menu-container -->
+        </div><!-- /#sidebar -->
+        <!-- END SIDEBAR -->
+        <!-- BEGIN PAGE CONTENT -->
+        <div id="page-content">
+            <div class="row">
+                <!-- BEGIN BREADCRUMB -->
+                <div class="col-md-12">
+                    <div class="breadcrumb-box border shadow">
+	                    <div class="breadcrumb-left">
+                            @{DateTime? time=DateTime.Now;
+                            }
+                            @time.ToPersianCalenderWithoutHour()
+                            <i class="icon-calendar"></i>
+                        </div><!-- /.breadcrumb-left -->
+                    </div><!-- /.breadcrumb-box -->
+                </div><!-- /.col-md-12 -->
+                <!-- END BREADCRUMB -->
+
+                <div class="col-12">
+                    <div class="portlet box border shadow">
+	                    <div class="portlet-body">
+	                        <div>
+                                @RenderBody()
+	                        </div>
+                        </div><!-- /.portlet-body -->
+                    </div><!-- /.portlet -->
+                </div><!-- /.col-12 -->
+            </div><!-- /.row -->
+        </div><!-- /#page-content -->
+        <!-- END PAGE CONTENT -->
+
+    </div><!-- /#wrapper -->
+    <!-- END WRAPPER -->
+
+    <div class="row footer-container">
+        <div class="col-md-12">
+            <div class="copyright">
+                <p class="float-start">
+                    کلیه حقوق قالب فروشکار محفوظ می باشد و کپی برداری از آن به هیچ عنوان جایز نیست.
+                </p>
+                <p class="float-end ltr tahoma">
+                    <span>©</span>
+                    <a href="http://www.rayanik.com" target="_blank">Rayanik</a>
+                </p>
+            </div><!-- /.copyright -->
+        </div><!-- /.col-md-12 -->
+    </div><!-- /.row -->
+
+    <!-- BEGIN JS -->
+    <script src="~/assets/plugins/jquery/dist/jquery-3.6.1.min.js"></script>
+    <script src="~/assets/plugins/bootstrap/bootstrap5/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/plugins/metisMenu/dist/metisMenu.min.js"></script>
+    <script src="~/assets/plugins/paper-ripple/dist/PaperRipple.min.js"></script>
+    <script src="~/assets/plugins/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="~/assets/plugins/sweetalert2/dist/sweetalert2.min.js"></script>
+    <script src="~/assets/plugins/screenfull/dist/screenfull.min.js"></script>
+    <script src="~/assets/plugins/iCheck/icheck.min.js"></script>
+    <script src="~/assets/plugins/switchery/dist/switchery.js"></script>
+<script src="~/assets/js/core.js"></script>
+
+
+
+
+@RenderSection("Scripts", required: false)
+
+
+</body>
+</html>

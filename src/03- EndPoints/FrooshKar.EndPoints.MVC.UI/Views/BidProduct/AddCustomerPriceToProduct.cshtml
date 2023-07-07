@@ -1,0 +1,22 @@
+﻿@{
+	Layout = "_Layout";
+}
+<form method="post">
+	<div class="container">
+		<div asp-validation-summary="ModelOnly"></div>
+		<br/>
+		<label>قیمت پیشنهادی شما:</label>
+		<br/>
+		<input type="number" name="price"/>
+		<br/>
+		<br/>
+
+		<input class="form-control" name="id" value="@ViewBag.Id" hidden/>
+		<input type="submit" class="btn btn-primary" value="ثبت قیمت پیشنهادی" asp-action="AddCustomerPriceToProduct" asp-controller="BidProduct"/>
+		<br/>
+		<br/>
+
+
+	</div>
+
+</form>

@@ -1,0 +1,73 @@
+﻿@{
+	Layout = "_VendorProfileLayout";
+}
+
+@model List<FrooshKar.Domain.Core.DTOs.FixedPriceProductDtoModel>
+
+@{
+	int count = 1;
+	bool tableHasData = false;
+}
+
+<div class="table-responsive container" style="background-color: white">
+	<table class="table table-bordered table-hover table-striped" id="data-table">
+
+		<thead>
+		<tr>
+			<th>ردیف</th>
+			<th>شماره Id</th>
+			<th>نام</th>
+			<th>قیمت واحد</th>
+			<th>تعداد</th>
+			<th>توضیحات</th>
+			<th>دسته بندی</th>
+		</tr>
+		</thead>
+
+		<tbody>
+
+		@foreach (var item in Model)
+		{
+
+			@if (!item.IsDeleted)
+			{
+				<tr>
+					@{
+						tableHasData = true;
+					}
+					<td>@(count++)</td>
+					<td>@item.Id</td>
+					<td>@item.Title</td>
+					<td>@item.UnitPrice</td>
+					<td>@item.Quantity</td>
+					<td>@item.Description</td>
+					<td>@item.Category.Title</td>
+
+				</tr>
+			}
+
+		}
+
+
+		@if (!tableHasData)
+		{
+			<tr>
+				<td colspan="7">
+					هیچ داده ای یافت نشد!
+				</td>
+			</tr>
+		}
+		</tbody>
+	</table>
+</div>
+
+
+
+
+
+
+@section Scripts
+{
+	<script src="~/main/js/vendor/jquery-ui.min.js"></script>
+	<script src="~/main/js/custom/price-range.js"></script>
+}

@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\01- Domain\FrooshKar.Domain.Core\FrooshKar.Domain.Core.csproj" />
+    <ProjectReference Include="..\FrooshKar.Infrastructures.Db.Sql.EF\FrooshKar.Infrastructures.Db.Sql.EF.csproj" />
+  </ItemGroup>
+
+</Project>

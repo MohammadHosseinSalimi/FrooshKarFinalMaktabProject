@@ -1,0 +1,96 @@
+﻿@{
+	Layout = "_Layout";
+
+}
+
+<section class="suggest-part">
+	<div class="container">
+		<div class="suggest-slider slider-arrow">
+			@await Component.InvokeAsync("Category")
+		</div>
+	</div>
+</section>
+
+
+
+
+<section class="section feature-part">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-5 col-lg-5">
+				<div class="section-side-heading">
+					<h2>محصولات فروشندگان مختلف <span>تازه ها</span></h2>
+					<p>
+						تمامی کالاهای فروشندگان سراسر ایران را از سایت فروشکار تهیه کنید
+					</p>
+				</div>
+			</div>
+
+			<div class="col-md-7 col-lg-7">
+				<div class="feature-item-slider slider-arrow">
+					@await Component.InvokeAsync("FixedPriceProduct")
+				</div>
+				<div class="feature-thumb-slider"></div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="center-50">
+					<a asp-controller="FixedPriceProduct" asp-action="ShowAllFixedPriceProduct" class="btn btn-inline"><i class="fas fa-eye"></i><span>مشاهده همه کالاهای قیمت مقطوع</span></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+
+
+<section class="section recomend-part">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="section-center-heading">
+					<h2>اینجا می تونی همه <span>غرفه داران رو ببینی! </span></h2>
+					<p>
+						هر غرفه داری که کالایی رو ثبت کرده از اینجا ببین
+						کالای موردنظرت رو با بهترین قیمت ازش بخر!!
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="recomend-slider slider-arrow">
+					@await Component.InvokeAsync("Vendor")
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+		
+<section class="section recomend-part">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="section-center-heading">
+					<h2>حتی می تونی <span>کالاهای مزایده ای بخری! </span></h2>
+					<p>
+						اینجا برای کالاهای مزایده ای قیمت ثبت کن
+						اگه برنده شدی کالا مال تو می شه!!
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="recomend-slider slider-arrow">
+					@await Component.InvokeAsync("BidProduct")
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

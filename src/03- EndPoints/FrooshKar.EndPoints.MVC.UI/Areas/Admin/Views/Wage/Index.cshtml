@@ -1,0 +1,65 @@
+﻿@model List<FrooshKar.EndPoints.MVC.UI.Areas.Admin.Models.WageViewModel>
+
+@{
+	int count = 1;
+	bool tableHasData = false;
+}
+
+<div class="table-responsive">
+	<table class="table table-bordered table-hover table-striped" id="data-table">
+
+		<thead>
+		<tr>
+			<th>ردیف</th>
+			<th>شماره Id</th>
+			<th>نام فروشنده</th>
+			<th>نام خانوادگی فروشنده</th>
+			<th>کارمزد کالاهای قیمت مقطوع</th>
+			<th>کارمزد کالاهای مزایده ای</th>
+			<th>کارمزد کل</th>
+		</tr>
+		</thead>
+
+		<tbody>
+
+		@foreach (var item in Model)
+		{
+
+				<tr>
+					@{
+						tableHasData = true;
+					}
+					<td>@(count++)</td>
+					<td>@item.Id</td>
+					<td>@item.VendorFirstName</td>
+					<td>@item.VendorLastName</td>
+					<td>@item.FixedPriceWage</td>
+					<td>@item.BidWage</td>
+					<td>@item.TotalWage</td>
+				</tr>
+
+		}
+		
+
+		@if (!tableHasData)
+		{
+			<tr>
+				<td colspan="6">
+					هیچ داده ای یافت نشد!
+				</td>
+			</tr>
+		}
+		</tbody>
+	</table>
+</div>
+
+@section Scripts
+{
+	<script src="~/assets/plugins/data-table/js/jquery.dataTables.min.js"></script>
+	<script src="~/assets/js/pages/datatable.js"></script>
+}
+@section HeaderCSS
+{
+	<link href="~/assets/plugins/data-table/DataTables-1.10.16/css/jquery.dataTables.css" rel="stylesheet">
+
+}

@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\01- Domain\FrooshKar.Domain.Core\FrooshKar.Domain.Core.csproj" />
+    <ProjectReference Include="..\..\01- Domain\FrooshKar.Domain.Service\FrooshKar.Domain.Service.csproj" />
+    <ProjectReference Include="..\..\01- Domain\FrooshKar.Domian.AppService\FrooshKar.Domain.AppService.csproj" />
+    <ProjectReference Include="..\..\02- Infrastructures\FrooshKar.Infrastructuers.Data.Repositories\FrooshKar.Infrastructuers.Data.Repositories.csproj" />
+  </ItemGroup>
+
+</Project>

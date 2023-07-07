@@ -1,0 +1,16 @@
+﻿@model FrooshKar.Domain.Core.DTOs.CommentDtoModel
+@{
+	Layout = "_Layout";
+}
+<br/>
+<form asp-controller="Factor" asp-action="ReleaseComment" method="post">
+	<div class="container">
+		<div class="form-group">
+			<label>لطفا نظر خود را وارد نمایید:</label>
+			<br/>
+			<textarea asp-for="Description"></textarea>
+			<input type="text" asp-for="FactorId" hidden/>
+		</div>
+		<button type="submit" class="btn btn-primary">ثبت نظر</button>
+	</div>
+</form>

@@ -1,0 +1,129 @@
+﻿@using FrooshKar.Domain.Core.DTOs
+@using FrooshKar.Domain.Core.Enums
+@model FrooshKar.EndPoints.MVC.UI.Areas.Admin.Models.CustomerViewModel
+@{
+	Layout = "_CustomerProfileLayout";
+
+}
+
+<form method="post" asp-controller="Customer" asp-action="Create" role="form" enctype="multipart/form-data">
+	<div class="setting-part">
+		<div class="container">
+			<div class="portlet box border shadow">
+				<div class="portlet-heading">
+					<div class="portlet-title">
+						<h3 class="title">
+							<i class="icon-settings"></i>
+							ویرایش اطلاعات کاربری
+						</h3>
+					</div><!-- /.portlet-title -->
+				</div><!-- /.portlet-heading -->
+				<div class="form-body">
+					<div class="form-group row">
+						<label class="col-sm-3" asp-for="FirstName">نام</label>
+						<div class="col-sm-9">
+							<input type="text" asp-for="Id" hidden/>
+							<input type="text" class="form-control" asp-for="FirstName">
+						</div>
+					</div><!-- /.form-group -->
+					<div class="form-group row">
+						<label class="col-sm-3" asp-for="LastName">نام خانوادگی</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" asp-for="LastName">
+						</div>
+					</div><!-- /.form-group -->
+					<div class="form-group row">
+						<label class="col-sm-3" asp-for="Email">ایمیل</label>
+						<div class="col-sm-9">
+							<input type="email" class="form-control" asp-for="Email">
+						</div>
+					</div><!-- /.form-group -->
+					<div class="form-group row">
+						<label class="col-sm-3" asp-for="Password">پسورد</label>
+						<div class="col-sm-9">
+							<input type="password" class="form-control" asp-for="Password">
+						</div>
+					</div><!-- /.form-group -->
+
+
+
+
+
+					<div class="form-group row">
+						<label class="col-sm-3">تاریخ تولد:</label>
+						<div class="col-sm-9">
+							<div class="input-group">
+								<span class="input-group-addon">
+									<i class="icon-calendar"></i>
+								</span>
+								<input type="text" class="form-control has-datepicker" asp-for="@Model.PersianCalender">
+
+							</div><!-- /.input-group -->
+						</div>
+					</div><!-- /.form-group -->
+
+
+
+
+
+
+					<div class="form-group row">
+						<label class="col-sm-3" asp-for="Gender">جنسیت</label>
+						<div class="col-sm-9">
+							<select asp-for="GenderEnum" class="form-control select2 round" asp-items="@Html.GetEnumSelectList<GenderEnum>()">
+							</select>
+
+						</div>
+					</div><!-- /.form-group -->
+					<div class="form-group row">
+						<label class="col-sm-3" asp-for="Address">آدرس</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" asp-for="Address">
+						</div>
+					</div><!-- /.form-group -->
+					<div class="form-group row">
+						<label class="col-sm-3">شهر</label>
+						<div class="col-sm-9">
+							<select class="form-control select2 round" asp-for="CityId" asp-items="@(new SelectList(Model.Cities, nameof(CityDtoModel.Id).ToString(), nameof(CityDtoModel.Title)))"><option>لطفا شهری را انتخاب کنید</option></select>
+						</div>
+					</div><!-- /.form-group -->
+					<div class="form-group relative">
+
+						<div class="input-group round">
+							<label>آپلود فایل</label>
+
+							<input type="file" asp-for="ImageFile" class="form-control" placeholder="برای آپلود عکس کلیک کنید">
+						</div><!-- /.input-group -->
+						<div class="help-block"></div>
+					</div><!-- /.form-group -->
+
+					<div class="form-actions">
+						<button type="submit" class="btn btn-info btn-round">
+							<i class="icon-check"></i>
+							ذخیره
+						</button>
+						<button type="button" asp-controller="Home" asp-action="Index" class="btn btn-warning btn-round">
+							بازگشت
+							<i class="icon-close"></i>
+						</button>
+					</div><!-- /.form-actions -->
+				</div>
+			</div>
+		</div>
+	</div>
+
+</form>
+
+@section HeaderCSS
+	{
+	<link href="~/assets/plugins/datepicker/jquery.ui.datepicker1.8-all.css" rel="stylesheet">
+	}
+
+@section Scripts
+	{
+	<script src="~/assets/plugins/datepicker/jquery-ui-1.10.1.custom.min.js"></script>
+	<script src="~/assets/plugins/datepicker/jquery.ui.datepicker-cc.js"></script>
+	<script src="~/assets/plugins/datepicker/calendar.js"></script>
+	<script src="~/assets/plugins/datepicker/jquery.ui.datepicker-cc-fa.js"></script>
+	<script src="~/assets/js/pages/calendar-ui.js"></script>
+}

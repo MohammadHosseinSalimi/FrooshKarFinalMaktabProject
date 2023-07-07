@@ -1,0 +1,126 @@
+﻿@using FrooshKar.Domain.Core.Entities
+@using FrooshKar.EndPoints.MVC.UI.Areas.Admin.Models
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using FrooshKar.Domain.Core.DTOs
+@using FrooshKar.Domain.Core.Enums
+@model BidProductViewModel
+
+<form method="post" asp-area="Admin" asp-controller="BidProduct" asp-action="Create" role="form" enctype="multipart/form-data">
+	<div class="portlet box border shadow">
+		<div class="portlet-heading">
+			<div class="portlet-title">
+				<h3 class="title">
+					<i class="icon-settings"></i>
+					افزودن کالای مزایده ای جدید
+				</h3>
+			</div><!-- /.portlet-title -->
+		</div><!-- /.portlet-heading -->
+		<div class="form-body">
+			<div class="form-group row">
+				<label class="col-sm-3" asp-for="Title">نام</label>
+				<div class="col-sm-9">
+					<input type="text" asp-for="Id" hidden />
+					<input type="text" class="form-control" asp-for="Title">
+				</div>
+			</div><!-- /.form-group -->
+			<div class="form-group row">
+				<label class="col-sm-3" asp-for="BasePrice">قیمت مبنا</label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control" asp-for="BasePrice">
+				</div>
+			</div><!-- /.form-group -->
+
+			<div class="form-group row">
+				<label class="col-sm-3">زمان شروع</label>
+				<div class="col-sm-9">
+					<div class="input-group">
+						<span class="input-group-addon">
+							<i class="icon-calendar"></i>
+						</span>
+						<input type="text" class="form-control has-datepicker" asp-for="StartBidTimePersianCalender">
+
+					</div><!-- /.input-group -->
+				</div>
+			</div><!-- /.form-group -->
+			
+			<div class="form-group row">
+				<label class="col-sm-3">زمان پایان</label>
+				<div class="col-sm-9">
+					<div class="input-group">
+						<span class="input-group-addon">
+							<i class="icon-calendar"></i>
+						</span>
+						<input type="text" class="form-control has-datepicker" asp-for="EndBidTimePersianCalender">
+
+					</div><!-- /.input-group -->
+				</div>
+			</div><!-- /.form-group -->
+			
+
+			<div class="form-group row">
+				<label class="col-sm-3" asp-for="Description">توضیحات</label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control" asp-for="Description">
+				</div>
+			</div><!-- /.form-group -->
+
+
+
+			<div class="form-group row">
+				<label class="col-sm-3">دسته بندی</label>
+				<div class="col-sm-9">
+					<select class="form-control select2 round" asp-for="CategoryId" asp-items="@(new SelectList(Model.Categories, nameof(CategoryDtoModel.Id).ToString(), nameof(CategoryDtoModel.Title)))"><option>لطفا دسته بندی را انتخاب کنید</option></select>
+				</div>
+			</div><!-- /.form-group -->
+
+			<div class="form-group row">
+				<label class="col-sm-3">فروشنده کالا</label>
+				<div class="col-sm-9">
+					<select class="form-control select2 round" asp-for="VendorId" asp-items="@(new SelectList(Model.Vendors, nameof(VendorDtoModel.Id).ToString(), nameof(VendorDtoModel.LastName)))"><option>لطفا فروشنده را انتخاب کنید</option></select>
+				</div>
+			</div><!-- /.form-group -->
+
+			<div class="form-group relative">
+				<input type="file" asp-for="FormFiles" class="form-control" multiple>
+				<label>آپلود فایل</label>
+				<div class="input-group round">
+					<input type="text" class="form-control file-input" placeholder="برای آپلود فایلها کلیک کنید">
+					<span class="input-group-btn">
+						<button type="button" class="btn btn-info">
+							<i class="icon-picture"></i>
+							آپلود عکسها
+						</button>
+					</span>
+				</div><!-- /.input-group -->
+				<div class="help-block"></div>
+			</div><!-- /.form-group -->
+
+			<div class="form-actions">
+				<button type="submit" class="btn btn-info btn-round">
+					<i class="icon-check"></i>
+					ذخیره
+				</button>
+				<button type="button" asp-area="Admin" asp-controller="BidProduct" asp-action="Index" class="btn btn-warning btn-round">
+					بازگشت
+					<i class="icon-close"></i>
+				</button>
+			</div><!-- /.form-actions -->
+		</div>
+	</div>
+
+</form>
+
+
+@section HeaderCSS
+{
+	<link href="~/assets/plugins/datepicker/jquery.ui.datepicker1.8-all.css" rel="stylesheet">
+}
+
+@section Scripts
+{
+	<script src="~/assets/plugins/datepicker/jquery-ui-1.10.1.custom.min.js"></script>
+	<script src="~/assets/plugins/datepicker/jquery.ui.datepicker-cc.js"></script>
+	<script src="~/assets/plugins/datepicker/calendar.js"></script>
+	<script src="~/assets/plugins/datepicker/jquery.ui.datepicker-cc-fa.js"></script>
+	<script src="~/assets/js/pages/calendar-ui.js"></script>
+}

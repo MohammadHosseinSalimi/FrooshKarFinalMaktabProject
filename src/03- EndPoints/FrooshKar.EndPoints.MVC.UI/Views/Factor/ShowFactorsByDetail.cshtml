@@ -1,0 +1,40 @@
+﻿@using Microsoft.AspNetCore.Razor.Language.Extensions
+@using Microsoft.CodeAnalysis.Host
+@using Microsoft.VisualStudio.Web.CodeGeneration.Templating
+@model ICollection<FrooshKar.Domain.Core.Entities.Cart>
+@{
+	Layout = "_Layout";
+	int count = 1;
+}
+<div class="table-responsive">
+	<table class="table table-bordered table-hover table-striped" id="data-table">
+
+		<thead>
+		<tr>
+			<th>ردیف</th>
+			<th>نام کالا</th>
+			<th>تعداد</th>
+			<th>قیمت واحد</th>
+			<th>عکس</th>
+
+		</tr>
+		</thead>
+
+		<tbody>
+
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>@(count++)</td>
+				<td>@item.FixedPriceProduct.Title</td>
+				<td>@item.Count</td>
+				<td>@item.FixedPriceProduct.UnitPrice</td>
+				<td><img src="@item.FixedPriceProduct.ProductImages.FirstOrDefault().Url" style="width: 100px; height: auto"/></td>
+
+			</tr>
+
+		}
+
+		</tbody>
+	</table>
+</div>

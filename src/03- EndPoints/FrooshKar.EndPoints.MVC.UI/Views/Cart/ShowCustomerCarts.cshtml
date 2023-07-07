@@ -1,0 +1,68 @@
+﻿@using Microsoft.AspNetCore.Razor.Language.Extensions
+@using Microsoft.CodeAnalysis.Host
+@using Microsoft.VisualStudio.Web.CodeGeneration.Templating
+@using Microsoft.AspNetCore.Razor.Language
+@model CartListViewModel
+@{
+	Layout = "_Layout";
+	int count = 1;
+}
+<form method="post" asp-action="ShowCustomerCarts" asp-controller="Cart">
+	<div asp-validation-summary="ModelOnly"></div>
+	<div class="table-responsive">
+		<table class="table table-bordered table-hover table-striped" id="data-table">
+
+			<thead>
+			<tr>
+				<th>ردیف</th>
+				<th>نام</th>
+				<th>عکس</th>
+				<th>تعداد</th>
+				<th>قیمت واحد</th>
+				<th>عملیات</th>
+			</tr>
+			</thead>
+
+			<tbody>
+			@for (int i = 0; i < Model.CartList.Count; i++)
+			{
+
+
+					<tr>
+						<td>@(count++)</td>
+						<td>@Model.CartList[i].FixedPriceProduct.Title</td>
+						<td><img src="@Model.CartList[i].FixedPriceProduct.ProductImages.FirstOrDefault()!.Url" style="width: 100px; height: auto"/></td>
+						<td>
+							@*<input type="number" asp-for="@item.Count" name="count" hidden/>*@
+							<input type="text" asp-for="@Model.CartList[i].Id" hidden/>
+							<input type="text" asp-for="@Model.CartList[i].FixedPriceProductId" hidden/>
+							<input type="text" asp-for="@Model.CartList[i].FixedPriceProduct.Id" hidden/>
+							<input type="text" asp-for="@Model.CartList[i].FixedPriceProduct.Quantity" hidden/>
+							<input type="text" asp-for="@Model.CartList[i].FixedPriceProduct.VendorId" hidden/>
+
+
+							<input type="text" asp-for="@Model.CartList[i].CustomerId" hidden/>
+
+
+							<input type="number" placeholder="@Model.CartList[i].Count" asp-for="@Model.CartList[i].Count"/>
+
+
+							<br/>
+							<span class="text-danger field-validation-valid" data-valmsg-for="count" data-valmsg-replace="true"></span>
+						</td>
+
+						<td>@Model.CartList[i].FixedPriceProduct.UnitPrice</td>
+						<td>
+							<a asp-controller="Cart" asp-action="DeleteCart" asp-route-id="@Model.CartList[i].Id" class="btn btn-info btn-round btn btn-danger">حذف از سبد خرید</a>
+						</td>
+					</tr>
+				
+
+			}
+
+			</tbody>
+		</table>
+	</div>
+	<button class="btn btn-info btn-round btn-primary" type="submit">ثبت نهایی و تهیه فاکتور</button>
+
+</form>

@@ -1,0 +1,13 @@
+﻿@using Microsoft.AspNetCore.Razor.Language.Extensions
+@model List<FrooshKar.Domain.Core.DTOs.CategoryDtoModel>
+
+@foreach (var item in Model)
+{
+	<div class="suggest-card">
+		<div class="suggest-img"><img src="@item.CategoryImageUrl" alt="@item.Title" /></div>
+		<div class="suggest-meta">
+			<h6><a asp-action="ShowAllFixedPriceProductByCategory" asp-controller="FixedPriceProduct" asp-route-categoryId="@item.Id">@item.Title</a></h6>
+		</div>
+	</div>
+}
+

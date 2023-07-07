@@ -1,0 +1,65 @@
+﻿@{
+	Layout = "_VendorProfileLayout";
+}
+
+@model List<FrooshKar.Domain.Core.DTOs.CommentDtoModel>
+
+@{
+	int count = 1;
+	bool tableHasData = false;
+}
+
+<div class="table-responsive container" style="background-color: white">
+	<table class="table table-bordered table-hover table-striped" id="data-table">
+
+		<thead>
+		<tr>
+			<th>ردیف</th>
+			<th>زمان فاکتور</th>
+			<th>کامنت ثبت شده</th>
+		</tr>
+		</thead>
+
+		<tbody>
+
+		@foreach (var item in Model)
+		{
+
+			@if (!item.IsDeleted)
+			{
+				<tr>
+					@{
+						tableHasData = true;
+					}
+					<td>@(count++)</td>
+					<td>@item.Factor.CreatedAt</td>
+					<td>@item.Description</td>
+
+				</tr>
+			}
+
+		}
+
+
+		@if (!tableHasData)
+		{
+			<tr>
+				<td colspan="3">
+					هیچ داده ای یافت نشد!
+				</td>
+			</tr>
+		}
+		</tbody>
+	</table>
+</div>
+
+
+
+
+
+
+@section Scripts
+{
+	<script src="~/main/js/vendor/jquery-ui.min.js"></script>
+	<script src="~/main/js/custom/price-range.js"></script>
+}

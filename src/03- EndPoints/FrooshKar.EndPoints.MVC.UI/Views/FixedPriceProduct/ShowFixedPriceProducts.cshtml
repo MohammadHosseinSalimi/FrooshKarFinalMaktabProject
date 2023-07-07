@@ -1,0 +1,71 @@
+﻿@using System.Collections
+@model List<FrooshKar.Domain.Core.DTOs.FixedPriceProductDtoModel>
+@{
+	Layout = "_Layout";
+}
+
+@section HeaderCSS
+	{
+	<link rel="stylesheet" href="~/main/css/custom/leftbar-list.css" />
+}
+
+<section class="ad-list-part">
+	<div class="container">
+		<div class="row content-reverse">
+			<div class="col-lg-12">
+				<div class="row">
+
+					@foreach (var item in Model)
+					{
+						<div class="col-sm-6 col-md-4 col-lg-4 card-grid">
+							<div class="product-card">
+								<div class="product-head">
+									<div class="product-img" style="background: url(@item.ProductImages.FirstOrDefault().Url) no-repeat center; background-size: cover;">
+									</div>
+								</div>
+								<div class="product-info">
+									<div class="product-tag">
+										<i class="fas fa-tags"></i>
+										<ol class="breadcrumb">
+											<li class="breadcrumb-item"><a href="#">@item.Category.Title</a></li>
+										</ol>
+									</div>
+									<div class="product-title">
+										<h5>@item.Description</h5>
+									</div>
+									<div class="product-details">
+										<div class="product-price">
+											<h5>قیمت: @item.UnitPrice ریال</h5>
+										</div>
+									</div>
+									@if (item.Carts.Any(x => x.CustomerId == (int)ViewData["currentCustomerId"] && x.IsFinished == false && x.IsDeleted == false && x.FixedPriceProductId == item.Id)==false)
+									{
+										<div class="product-details" style="justify-content: center">
+											<a asp-controller="Customer" asp-action="AddProductToCustomerCart" asp-route-id="@item.Id" class="btn btn-danger" dideo-checked="true"><i class="fa fa-shopping-cart"></i><span>افزودن به سبد خرید</span></a>
+										</div>
+									}
+									else
+									{
+										<div class="product-details" style="justify-content: center">
+											به سبد خرید افزوده شده است
+										</div>
+									}
+								</div>
+							</div>
+						</div>
+
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+@section Scripts
+	{
+	<script src="~/main/js/vendor/jquery-ui.min.js"></script>
+	<script src="~/main/js/custom/price-range.js"></script>
+}
+
+

@@ -1,0 +1,70 @@
+﻿
+
+@using FrooshKar.Frameworks
+@model List<FrooshKar.Domain.Core.DTOs.BidProductDtoModel>
+@{
+	Layout = "_VendorProfileLayout";
+}
+@{
+	int count = 1;
+	bool tableHasData = false;
+}
+<div class="table-responsive container" style="background-color: white">
+	<table class="table table-bordered table-hover table-striped" id="data-table">
+
+		<thead>
+		<tr>
+			<th>ردیف</th>
+			<th>شماره Id</th>
+			<th>نام</th>
+			<th>قیمت مبنا</th>
+			<th>زمان شروع</th>
+			<th>زمان پایان</th>
+			<th>توضیحات</th>
+			<th>دسته بندی</th>
+		</tr>
+		</thead>
+
+		<tbody>
+
+		@foreach (var item in Model)
+		{
+
+			@if (!item.IsDeleted)
+			{
+				<tr>
+					@{
+						tableHasData = true;
+					}
+					<td>@(count++)</td>
+					<td>@item.Id</td>
+					<td>@item.Title</td>
+					<td>@item.BasePrice</td>
+					<td>@item.StartBidTime.ToPersianCalenderWithoutHour()</td>
+					<td>@item.EndBidTime.ToPersianCalenderWithoutHour()</td>
+					<td>@item.Description</td>
+					<td>@item.Category.Title</td>
+
+				</tr>
+			}
+
+		}
+
+
+		@if (!tableHasData)
+		{
+			<tr>
+				<td colspan="8">
+					هیچ داده ای یافت نشد!
+				</td>
+			</tr>
+		}
+		</tbody>
+	</table>
+</div>
+
+@section Scripts
+{
+	<script src="~/main/js/vendor/jquery-ui.min.js"></script>
+	<script src="~/main/js/custom/price-range.js"></script>
+}

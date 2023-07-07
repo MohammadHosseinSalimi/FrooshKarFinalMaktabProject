@@ -1,0 +1,1 @@
+﻿Scaffold-DbContext "Data Source=.;Initial Catalog=FrooshKarDb;TrustServerCertificate=True;Integrated Security=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models

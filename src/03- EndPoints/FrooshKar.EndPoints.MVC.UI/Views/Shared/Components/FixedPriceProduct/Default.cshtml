@@ -1,0 +1,27 @@
+﻿@model List<FrooshKar.Domain.Core.DTOs.FixedPriceProductDtoModel>
+
+
+@foreach (var item in Model)
+{
+	var time = (TimeSpan)(DateTime.Now-item.CreatedAt);
+	<div class="feature-card">
+		<div class="feature-img">
+			<a href="#"><img src="@item.ProductImages.FirstOrDefault().Url" alt="@item.Title" style="height: 600px"/></a>
+		</div>
+
+		<div class="feature-content">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="#">@item.Category.Title</a></li>
+			</ol>
+			<div class="feature-title">
+				<h3><a href="#">@item.Description</a></h3>
+			</div>
+			<ul class="feature-meta">
+				<li>
+					<span>@item.UnitPrice تومان</span>
+				</li>
+				<li><i class="fas fa-clock"></i><span>@((int)time.TotalMinutes) دقیقه قبل</span></li>
+			</ul>
+		</div>
+	</div>
+}

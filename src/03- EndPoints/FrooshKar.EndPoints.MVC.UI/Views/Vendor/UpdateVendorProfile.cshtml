@@ -1,0 +1,61 @@
+﻿@using FrooshKar.Domain.Core.DTOs
+@using FrooshKar.Domain.Core.Enums
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model FrooshKar.EndPoints.MVC.UI.Areas.Admin.Models.VendorViewModel
+@{
+	Layout = "_VendorProfileLayout";
+
+}
+
+<div class="setting-part">
+	<div class="container" style="background-color: white">
+        <form class="setting-form" role="form" enctype="multipart/form-data" method="post">
+            <div class="row">
+	            <div class="col-lg-6">
+		            <input type="text" asp-for="Id" hidden/>
+		            <input type="text" asp-for="UserName" hidden/>
+		            <input type="text" asp-for="Role" hidden/>
+		            <input type="text" asp-for="AppUserId" hidden/>
+		            <div class="form-group"><label class="form-label">نام </label><input type="text" class="form-control" placeholder="@Model.FirstName" asp-for="FirstName"/></div>
+	            </div>
+	            <div class="col-lg-6">
+		            <div class="form-group"><label class="form-label">نام خانوادگی </label><input type="text" class="form-control" placeholder="@Model.LastName" asp-for="LastName" /></div>
+	            </div>
+	            <div class="col-lg-6">
+		            <div class="form-group"><label class="form-label">ایمیل </label><input type="text" class="form-control" placeholder="@Model.Email" asp-for="Email"/></div>
+	            </div>
+	            <div class="col-lg-6">
+		            <div class="form-group"><label class="form-label">پسورد </label><input type="text" class="form-control" placeholder="@Model.Password" asp-for="Password" /></div>
+	            </div>
+	            <div class="col-lg-12">
+		            <div class="form-group"><label class="form-label">آدرس </label><input type="text" class="form-control" placeholder="@Model.Address" asp-for="Address" /></div>
+	            </div>
+	            <div class="col-lg-12">
+		            <div class="form-group"><label class="form-label">جنسیت </label>
+			            <select asp-for="GenderEnum" class="form-control select2 round" asp-items="@Html.GetEnumSelectList<GenderEnum>()">
+			            </select>
+			            </div>
+	            </div>
+
+                <div class="col-lg-6">
+	                <div class="form-group"><label class="form-label">شهر</label>
+		                <select class="form-control custom-select"
+		                        asp-for="CityId" asp-items="@(new SelectList(Model.Cities, nameof(CategoryDtoModel.Id).ToString(), nameof(CategoryDtoModel.Title)))"><option>لطفا دسته بندی را انتخاب نمایید</option>
+		                </select>
+		            </div>
+                </div>
+	            <div class="col-lg-6">
+                    <div class="form-group"><label class="form-label">تاریخ تولد</label><input type="datetime-local" class="form-control" asp-for="BirthDate"/></div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group"><label class="form-label">تصویر پروفایل</label><input type="file" class="form-control" asp-for="ImageFile" /></div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="form-group text-center mt-5">
+                        <button class="btn btn-inline" type="submit"><i class="fas fa-user-check"></i><span>بروز رسانی اطلاعات</span></button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

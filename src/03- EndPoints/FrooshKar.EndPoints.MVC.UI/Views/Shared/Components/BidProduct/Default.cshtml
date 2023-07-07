@@ -1,0 +1,51 @@
+﻿@using FrooshKar.Frameworks
+@model List<FrooshKar.Domain.Core.DTOs.BidProductDtoModel>
+
+@foreach (var item in Model)
+{
+	var time = (TimeSpan)(DateTime.Now - item.CreatedAt);
+	<div class="product-card">
+		<div class="product-head">
+			<div class="product-img" style="background: url(@item.ProductImages.FirstOrDefault().Url) no-repeat center; background-size: cover;">
+			</div>
+		</div>
+		<div class="product-info">
+			<div class="product-tag">
+				<i class="fas fa-tags"></i>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="#">@item.Category.Title </a></li>
+				</ol>
+			</div>
+			<div class="product-title">
+				<h5>@item.Description</h5>
+				<ul class="product-location">
+
+					<li>
+						<i class="fas fa-clock"></i>
+						<p>@((int)time.TotalMinutes) دقیقه قبل</p>
+					</li>
+				</ul>
+			</div>
+			<div class="product-details">
+				<div class="product-price">
+					<h5>زمان شروع:<span>@item.StartBidTime.ToPersianCalenderWithoutHour()</span></h5>
+					<h5>زمان اتمام:<span>@item.EndBidTime.ToPersianCalenderWithoutHour()</span></h5>
+				</div>
+			</div>
+			<div class="product-details">
+				<div class="product-price">
+					<h5>قیمت مبنا:<span>@item.BasePrice</span></h5>
+					<h5>آخرین قیمت پیشنهادی:<span>@item.LastMaxModifiedPrice</span></h5>
+				</div>
+			</div>
+			<div class="product-details" style="justify-content: center">
+				<div class="product-price">
+					<a asp-route-id="@item.Id" asp-controller="BidProduct" asp-action="AddCustomerPriceToProduct"><button class="btn btn-primary" >ثبت قیمت برای کالا</button></a>
+				</div>
+			</div>
+
+		</div>
+	</div>
+}
+
+

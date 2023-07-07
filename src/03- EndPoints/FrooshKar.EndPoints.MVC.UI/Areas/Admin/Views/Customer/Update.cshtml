@@ -1,0 +1,131 @@
+﻿@using FrooshKar.Domain.Core.DTOs
+@using FrooshKar.Domain.Core.Enums
+@using FrooshKar.Frameworks
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model FrooshKar.EndPoints.MVC.UI.Areas.Admin.Models.CustomerViewModel
+
+<form method="post" asp-controller="Customer" asp-action="Update" role="form" enctype="multipart/form-data">
+	<div class="portlet box border shadow"/>
+	<div class="portlet-heading">
+		<div class="portlet-title">
+			<h3 class="title">
+				<i class="icon-settings"></i>
+				ویرایش اطلاعات مشتری
+			</h3>
+		</div><!-- /.portlet-title -->
+	</div>
+	<!-- /.portlet-heading -->
+	<div class="portlet-body">
+		<div class="form-body">
+			<div class="form-group row">
+				<label class="col-sm-3">نام</label>
+				<div class="col-sm-9">
+					<input type="text" asp-for="Id" hidden/>
+					<input type="text" asp-for="UserName" hidden/>
+					<input type="text" asp-for="Role" hidden/>
+					<input type="text" asp-for="AppUserId" hidden/>
+					<input type="text" class="form-control" placeholder="@Model.FirstName" asp-for="FirstName">
+				</div>
+			</div><!-- /.form-group -->
+			<div class="form-group row">
+				<label class="col-sm-3">نام خانوادگی</label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control" placeholder="@Model.LastName" asp-for="LastName">
+				</div>
+			</div><!-- /.form-group -->
+			<div class="form-group row">
+				<label class="col-sm-3">ایمیل</label>
+				<div class="col-sm-9">
+					<input type="email" class="form-control" placeholder="@Model.Email" asp-for="Email">
+				</div>
+			</div><!-- /.form-group -->
+				<div class="form-group row">
+					<label class="col-sm-3">پسورد</label>
+					<div class="col-sm-9">
+						<input type="password" class="form-control" placeholder="@Model.Password" asp-for="Password">
+					</div>
+				</div><!-- /.form-group -->
+
+			
+			
+			<div class="form-group row">
+				<label class="col-sm-3">تاریخ تولد:</label>
+				<div class ="col-sm-9">
+					<div class="input-group">
+						<span class="input-group-addon">
+							<i class="icon-calendar"></i>
+						</span>
+						<input type="text" class="form-control has-datepicker" placeholder="@Model.PersianCalender" asp-for="@Model.PersianCalender">
+						
+					</div><!-- /.input-group -->
+				</div>
+			</div><!-- /.form-group -->
+			
+			
+			
+			
+			
+
+			<div class="form-group row">
+				<label class="col-sm-3" asp-for="Gender">جنسیت</label>
+				<div class="col-sm-9">
+					<select asp-for="GenderEnum" class="form-control select2 round" asp-items="@Html.GetEnumSelectList<GenderEnum>()">
+					</select>
+
+				</div>
+			</div><!-- /.form-group -->
+
+				<div class="form-group row">
+					<label class="col-sm-3">آدرس</label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" placeholder="@Model.Address" asp-for="Address">
+					</div>
+				</div><!-- /.form-group -->
+				<div class="form-group row">
+					<label class="col-sm-3">شهر</label>
+					<div class="col-sm-9">
+						<select class="form-control select2 round" asp-for="CityId" asp-items="@(new SelectList(Model.Cities, nameof(CityDtoModel.Id).ToString(), nameof(CityDtoModel.Title)))"><option>لطفا شهری را انتخاب کنید</option></select>
+					</div>
+				</div><!-- /.form-group -->
+				<div class="form-group relative">
+					<input type="file" asp-for="ImageFile" class="form-control">
+					<label>آپلود فایل</label>
+					<div class="input-group round">
+						<input type="text" class="form-control file-input" placeholder="برای آپلود کلیک کنید">
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-info">
+								<i class="icon-picture"></i>
+								آپلود عکس
+							</button>
+						</span>
+					</div><!-- /.input-group -->
+					<div class="help-block"></div>
+				</div><!-- /.form-group -->
+				<div class="form-actions">
+					<button type="submit" class="btn btn-info btn-round">
+						<i class="icon-check"></i>
+						ذخیره
+					</button>
+
+				<a asp-area="Admin" asp-controller="Customer" asp-action="Index"><button type="button" class="btn btn-warning btn-round">					بازگشت
+					<i class="icon-close"></i>
+				</button></a>
+	
+				</div><!-- /.form-actions -->
+			</div>
+		</div>
+
+</form>
+@section HeaderCSS
+{
+	<link href="~/assets/plugins/datepicker/jquery.ui.datepicker1.8-all.css" rel="stylesheet">
+}
+
+@section Scripts
+{
+	<script src="~/assets/plugins/datepicker/jquery-ui-1.10.1.custom.min.js"></script>
+	<script src="~/assets/plugins/datepicker/jquery.ui.datepicker-cc.js"></script>
+	<script src="~/assets/plugins/datepicker/calendar.js"></script>
+	<script src="~/assets/plugins/datepicker/jquery.ui.datepicker-cc-fa.js"></script>
+	<script src="~/assets/js/pages/calendar-ui.js"></script>
+}

@@ -1,0 +1,83 @@
+﻿@using FrooshKar.Frameworks
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model List<FrooshKar.Domain.Core.DTOs.CommentDtoModel>
+
+@{
+	int count = 1;
+	bool tableHasData = false;
+}
+
+<div class="table-responsive">
+	<table class="table table-bordered table-hover table-striped" id="data-table">
+
+		<thead>
+			<tr>
+				<th>ردیف</th>
+				<th>شماره Id</th>
+				<th>نام و نام خانوادگی خریدار</th>
+				<th>نام و نام خانوادگی فروشنده</th>
+				<th>نظر داده شده</th>
+				<th>عملیات</th>
+			</tr>
+		</thead>
+
+		<tbody>
+
+			@foreach (var item in Model)
+			{
+
+				@if (!item.IsDeleted)
+				{
+					<tr>
+						@{
+							tableHasData = true;
+						}
+						<td>@(count++)</td>
+						<td>@item.Id</td>
+						<td>@item.Factor.Carts.FirstOrDefault().Customer.FirstName @item.Factor.Carts.FirstOrDefault().Customer.LastName</td>
+						<td>@item.Factor.Carts.FirstOrDefault().FixedPriceProduct.Vendor.FirstName @item.Factor.Carts.FirstOrDefault().FixedPriceProduct.Vendor.LastName</td>
+
+						<td>@item.Description</td>
+						@if (!item.IsValidByAdmin)
+						{
+
+							<td>
+
+								<a asp-area="Admin" asp-controller="Comment" asp-action="AcceptComment" asp-route-id="@item.Id" class="btn btn-info btn-round">تایید نظر</a>
+							</td>
+						}
+						else
+						{
+							<td>
+								<a asp-area="Admin" asp-controller="Comment" asp-action="RejectComment" class="btn btn-info btn-round btn btn-danger" asp-route-id="@item.Id">رد نظر</a>
+							</td>
+						}
+					</tr>
+
+				}
+			}
+
+
+			@if (!tableHasData)
+			{
+				<tr>
+					<td colspan="6">
+						هیچ داده ای یافت نشد!
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>
+
+@section Scripts
+	{
+	<script src="~/assets/plugins/data-table/js/jquery.dataTables.min.js"></script>
+	<script src="~/assets/js/pages/datatable.js"></script>
+}
+
+@section HeaderCSS
+	{
+	<link href="~/assets/plugins/data-table/DataTables-1.10.16/css/jquery.dataTables.css" rel="stylesheet">
+
+}

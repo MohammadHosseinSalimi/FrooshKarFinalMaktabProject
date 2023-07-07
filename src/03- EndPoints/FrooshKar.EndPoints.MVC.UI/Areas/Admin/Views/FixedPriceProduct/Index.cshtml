@@ -1,0 +1,84 @@
+﻿@using FrooshKar.Frameworks
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model List<FrooshKar.Domain.Core.DTOs.FixedPriceProductDtoModel>
+
+@{
+	int count = 1;
+	bool tableHasData = false;
+}
+<button class="btn btn-primary round"><a style="color: white" asp-area="Admin" asp-controller="FixedPriceProduct" asp-action="Create">افزودن کالای جدید</a></button>
+<br />
+<br />
+<div class="table-responsive">
+	<table class="table table-bordered table-hover table-striped" id="data-table">
+
+		<thead>
+			<tr>
+				<th>ردیف</th>
+				<th>شماره Id</th>
+				<th>نام</th>
+				<th>قیمت واحد</th>
+				<th>تعداد</th>
+				<th>توضیحات</th>
+				<th>نام فروشنده</th>
+				<th>دسته بندی</th>
+				<th>عملیات</th>
+			</tr>
+		</thead>
+
+		<tbody>
+
+			@foreach (var item in Model)
+			{
+
+				@if (!item.IsDeleted)
+				{
+					<tr>
+						@{
+							tableHasData = true;
+						}
+						<td>@(count++)</td>
+						<td>@item.Id</td>
+						<td>@item.Title</td>
+						<td>@item.UnitPrice</td>
+						<td>@item.Quantity</td>
+						<td>@item.Description</td>
+						<td>@item.Vendor.LastName</td>
+						<td>@item.Category.Title</td>
+
+						<td>
+
+							<a asp-area="Admin" asp-controller="FixedPriceProduct" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-info btn-round btn btn-danger">حذف</a>
+
+							<a asp-area="Admin" asp-controller="FixedPriceProduct" asp-action="Update" class="btn btn-info btn-round" asp-route-id="@item.Id">ویرایش</a>
+
+						</td>
+					</tr>
+				}
+
+			}
+
+
+			@if (!tableHasData)
+			{
+				<tr>
+					<td colspan="9">
+						هیچ داده ای یافت نشد!
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>
+
+@section Scripts
+	{
+	<script src="~/assets/plugins/data-table/js/jquery.dataTables.min.js"></script>
+	<script src="~/assets/js/pages/datatable.js"></script>
+}
+
+@section HeaderCSS
+	{
+	<link href="~/assets/plugins/data-table/DataTables-1.10.16/css/jquery.dataTables.css" rel="stylesheet">
+
+}						

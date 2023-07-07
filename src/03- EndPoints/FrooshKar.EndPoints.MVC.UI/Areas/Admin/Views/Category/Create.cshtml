@@ -1,0 +1,49 @@
+﻿@model FrooshKar.EndPoints.MVC.UI.Areas.Admin.Models.CategoryViewModel
+
+<form method="post" asp-controller="Category" asp-action="Create" role="form" enctype="multipart/form-data">
+	<div class="portlet box border shadow">
+		<div class="portlet-heading">
+			<div class="portlet-title">
+				<h3 class="title">
+					<i class="icon-settings"></i>
+					افزودن دسته بندی جدید
+				</h3>
+			</div><!-- /.portlet-title -->
+		</div><!-- /.portlet-heading -->
+		<div class="form-body">
+			<div class="form-group row">
+				<label class="col-sm-3" asp-for="Title">نام دسته بندی</label>
+				<div class="col-sm-9">
+					<input type="text" asp-for="Id" hidden />
+					<input type="text" class="form-control"  asp-for="Title">
+				</div>
+				<div class="form-group relative">
+					<input type="file" asp-for="ImageFile" class="form-control">
+					<label>آپلود فایل</label>
+					<div class="input-group round">
+						<input type="text" class="form-control file-input" placeholder="برای آپلود کلیک کنید">
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-info">
+								<i class="icon-picture"></i>
+								آپلود عکس
+							</button>
+						</span>
+					</div><!-- /.input-group -->
+					<div class="help-block"></div>
+				</div><!-- /.form-group -->
+
+				<div class="form-actions">
+					<button type="submit" class="btn btn-info btn-round">
+						<i class="icon-check"></i>
+						ذخیره
+					</button>
+					<button type="button" class="btn btn-warning btn-round">
+						بازگشت
+						<i class="icon-close"></i>
+					</button>
+				</div><!-- /.form-actions -->
+			</div>
+		</div>
+	</div>
+
+</form>

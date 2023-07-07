@@ -1,0 +1,87 @@
+﻿@using FrooshKar.Domain.Core.Entities
+@using FrooshKar.EndPoints.MVC.UI.Areas.Admin.Models
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using FrooshKar.Domain.Core.DTOs
+@using FrooshKar.Domain.Core.Enums
+@model FixedPriceProductViewModel
+
+<form method="post" asp-area="Admin" asp-controller="FixedPriceProduct" asp-action="Update" role="form" enctype="multipart/form-data">
+	<div class="portlet box border shadow">
+		<div class="portlet-heading">
+			<div class="portlet-title">
+				<h3 class="title">
+					<i class="icon-settings"></i>
+					افزودن کالای قیمت مقطوع جدید
+				</h3>
+			</div><!-- /.portlet-title -->
+		</div><!-- /.portlet-heading -->
+		<div class="form-body">
+			<div class="form-group row">
+				<label class="col-sm-3" asp-for="Title">نام</label>
+				<div class="col-sm-9">
+					<input type="text" asp-for="Id" hidden />
+					<input type="text" asp-for="VendorId" hidden/>
+					<input type="text" class="form-control" asp-for="Title">
+				</div>
+			</div><!-- /.form-group -->
+			<div class="form-group row">
+				<label class="col-sm-3" asp-for="UnitPrice">قیمت واحد</label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control" asp-for="UnitPrice">
+				</div>
+			</div><!-- /.form-group -->
+			<div class="form-group row">
+				<label class="col-sm-3" asp-for="Quantity">تعداد</label>
+				<div class="col-sm-9">
+					<input type="number" class="form-control" asp-for="Quantity">
+				</div>
+			</div><!-- /.form-group -->
+			<div class="form-group row">
+				<label class="col-sm-3" asp-for="Description">توضیحات</label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control" asp-for="Description">
+				</div>
+			</div><!-- /.form-group -->
+
+
+
+			<div class="form-group row">
+				<label class="col-sm-3">دسته بندی</label>
+				<div class="col-sm-9">
+					<select class="form-control select2 round" asp-for="CategoryId" asp-items="@(new SelectList(Model.Categories, nameof(CategoryDtoModel.Id).ToString(), nameof(CategoryDtoModel.Title)))"><option>لطفا دسته بندی را انتخاب کنید</option></select>
+				</div>
+			</div><!-- /.form-group -->
+			
+
+			<div class="form-group relative">
+				<input type="file" asp-for="FormFiles" class="form-control" multiple>
+				<label>آپلود فایل</label>
+				<div class="input-group round">
+					<input type="text" class="form-control file-input" placeholder="برای آپلود فایلها کلیک کنید">
+					<span class="input-group-btn">
+						<button type="button" class="btn btn-info">
+							<i class="icon-picture"></i>
+							آپلود عکسها
+						</button>
+					</span>
+				</div><!-- /.input-group -->
+				<div class="help-block"></div>
+			</div><!-- /.form-group -->
+
+			<div class="form-actions">
+				<button type="submit" class="btn btn-info btn-round">
+					<i class="icon-check"></i>
+					ذخیره
+				</button>
+				<button type="button" asp-area="Admin" asp-controller="FixedPriceProduct" asp-action="Index" class="btn btn-warning btn-round">
+					بازگشت
+					<i class="icon-close"></i>
+				</button>
+			</div><!-- /.form-actions -->
+		</div>
+	</div>
+
+</form>
+
+
+

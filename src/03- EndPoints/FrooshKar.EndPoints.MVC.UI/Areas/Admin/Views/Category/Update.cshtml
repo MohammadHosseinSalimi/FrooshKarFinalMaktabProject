@@ -1,0 +1,58 @@
+﻿@model FrooshKar.EndPoints.MVC.UI.Areas.Admin.Models.CategoryViewModel
+
+<form method="post" asp-controller="Category" asp-action="Update" role="form" enctype="multipart/form-data">
+	<div class="portlet box border shadow"/>
+	<div class="portlet-heading">
+		<div class="portlet-title">
+			<h3 class="title">
+				<i class="icon-settings"></i>
+				فرم عمومی
+			</h3>
+		</div><!-- /.portlet-title -->
+	</div>
+	<!-- /.portlet-heading -->
+	<div class="portlet-body">
+		<div class="form-body">
+			<div class="form-group row">
+				<label class="col-sm-3">نام دسته بندی</label>
+				<div class="col-sm-9">
+					<input type="text" asp-for="Id" hidden/>
+					<input type="text" class="form-control" placeholder="@Model.Title" asp-for="Title">
+				</div>
+			</div><!-- /.form-group -->
+
+					<input type="text" class="form-control" placeholder="@Model.CategoryImageName" asp-for="CategoryImageName" hidden>
+
+					<input type="text" class="form-control" placeholder="@Model.CategoryImageUrl" asp-for="CategoryImageUrl" hidden>
+
+				<div class="form-group relative">
+					<input type="file" asp-for="ImageFile" class="form-control">
+					<label>آپلود فایل</label>
+					<div class="input-group round">
+						<input type="text" class="form-control file-input" placeholder="برای آپلود کلیک کنید">
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-info">
+								<i class="icon-picture"></i>
+								آپلود عکس
+							</button>
+						</span>
+					</div><!-- /.input-group -->
+					<div class="help-block"></div>
+				</div><!-- /.form-group -->
+				<div class="form-actions">
+					<button type="submit" class="btn btn-info btn-round">
+						<i class="icon-check"></i>
+						ذخیره
+					</button>
+					<button type="button" class="btn btn-warning btn-round">
+						<a asp-area="Admin" asp-controller="Category" asp-action="Index"></a>
+						بازگشت
+						<i class="icon-close"></i>
+					</button>
+				</div><!-- /.form-actions -->
+			</div>
+		</div>
+	</div>
+
+</form>
+      

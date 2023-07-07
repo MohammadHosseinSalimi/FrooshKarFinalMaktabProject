@@ -1,0 +1,86 @@
+﻿@using FrooshKar.Frameworks
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model List<FrooshKar.Domain.Core.DTOs.BidProductDtoModel>
+
+@{
+	int count = 1;
+	bool tableHasData = false;
+}
+<button class="btn btn-primary round"><a style="color: white" asp-area="Admin" asp-controller="BidProduct" asp-action="Create">افزودن کالای جدید</a></button>
+<br />
+<br />
+<div class="table-responsive">
+	<table class="table table-bordered table-hover table-striped" id="data-table">
+
+		<thead>
+		<tr>
+			<th>ردیف</th>
+			<th>شماره Id</th>
+			<th>نام</th>
+			<th>قیمت مبنا</th>
+			<th>زمان شروع</th>
+			<th>زمان پایان</th>
+			<th>توضیحات</th>
+			<th>نام فروشنده</th>
+			<th>دسته بندی</th>
+			<th>عملیات</th>
+		</tr>
+		</thead>
+
+		<tbody>
+
+		@foreach (var item in Model)
+		{
+
+			@if (!item.IsDeleted)
+			{
+				<tr>
+					@{
+						tableHasData = true;
+					}
+					<td>@(count++)</td>
+					<td>@item.Id</td>
+					<td>@item.Title</td>
+					<td>@item.BasePrice</td>
+					<td>@item.StartBidTime.ToPersianCalenderWithoutHour()</td>
+					<td>@item.EndBidTime.ToPersianCalenderWithoutHour()</td>
+					<td>@item.Description</td>
+					<td>@item.Vendor.LastName</td>
+					<td>@item.Category.Title</td>
+
+					<td>
+
+						<a asp-area="Admin" asp-controller="BidProduct" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-info btn-round btn btn-danger">حذف</a>
+
+						<a asp-area="Admin" asp-controller="BidProduct" asp-action="Update" class="btn btn-info btn-round" asp-route-id="@item.Id">ویرایش</a>
+
+					</td>
+				</tr>
+			}
+
+		}
+
+
+		@if (!tableHasData)
+		{
+			<tr>
+				<td colspan="10">
+					هیچ داده ای یافت نشد!
+				</td>
+			</tr>
+		}
+		</tbody>
+	</table>
+</div>
+
+@section Scripts
+{
+	<script src="~/assets/plugins/data-table/js/jquery.dataTables.min.js"></script>
+	<script src="~/assets/js/pages/datatable.js"></script>
+}
+
+@section HeaderCSS
+{
+	<link href="~/assets/plugins/data-table/DataTables-1.10.16/css/jquery.dataTables.css" rel="stylesheet">
+
+}

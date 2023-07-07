@@ -1,0 +1,48 @@
+﻿@using Microsoft.AspNetCore.Razor.Language.Extensions
+@using Microsoft.CodeAnalysis.Host
+@using Microsoft.VisualStudio.Web.CodeGeneration.Templating
+@model List<FrooshKar.Domain.Core.DTOs.FactorDtoModel>
+@{
+	Layout = "_Layout";
+	int count = 1;
+}
+<div class="table-responsive">
+	<table class="table table-bordered table-hover table-striped" id="data-table">
+
+		<thead>
+			<tr>
+				<th>ردیف</th>
+				<th>تاریخ ایجاد</th>
+				<th>عملیات</th>
+				<th>نظر شما</th>
+			</tr>
+		</thead>
+
+		<tbody>
+
+			@foreach (var item in Model)
+			{
+				<tr>
+					<td>@(count++)</td>
+					<td>@item.CreatedAt</td>
+					<td>
+						<a asp-controller="Factor" asp-action="ShowFactorsByDetail" asp-route-factorId="@item.Id" class="btn btn-info btn-round btn btn-primary">مشاهده جزئیات فاکتور</a>
+					</td>
+					<td>
+						@if (item.Comment == null)
+						{
+							<a asp-controller="Factor" asp-action="ReleaseComment" asp-route-factorId="@item.Id" class="btn btn-info btn-round btn btn-primary">ثبت نظر</a>
+						}
+						else
+						{
+							<span>@item.Comment.Description</span>
+						}
+					</td>
+
+				</tr>
+
+			}
+
+		</tbody>
+	</table>
+</div>

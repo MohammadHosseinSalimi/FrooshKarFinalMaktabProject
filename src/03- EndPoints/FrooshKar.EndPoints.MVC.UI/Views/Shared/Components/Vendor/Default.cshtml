@@ -1,0 +1,17 @@
+﻿@model List<FrooshKar.Domain.Core.DTOs.VendorDtoModel>
+
+
+@foreach (var item in Model)
+{
+	<div class="product-card">
+		<div class="product-head">
+			<div class="product-img" style="background: url(@item.ProfileImageUrl) no-repeat center; background-size: cover;">
+			</div>
+		</div>
+		<div class="product-info">
+			<div class="product-title">
+				<h5><a asp-action="ShowAllFixedPriceProductByVendor" asp-controller="FixedPriceProduct" asp-route-vendorId="@item.Id">غرفه @item.FirstName @item.LastName</a></h5>
+			</div>
+		</div>
+	</div>
+}

@@ -1,0 +1,94 @@
+﻿@using FrooshKar.Frameworks
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model List<FrooshKar.EndPoints.MVC.UI.Areas.Admin.Models.VendorViewModel>
+
+@{
+	int count = 1;
+	bool tableHasData = false;
+}
+<button class="btn btn-primary round"><a style="color: white" asp-area="Admin" asp-controller="Vendor" asp-action="Create">افزودن فروشنده جدید</a></button>
+<br/>
+<br/>
+<div class="table-responsive">
+	<table class="table table-bordered table-hover table-striped" id="data-table">
+
+		<thead>
+		<tr>
+			<th>ردیف</th>
+			<th>شماره Id</th>
+			<th>نام</th>
+			<th>نام خانوادگی</th>
+			<th>تاریخ تولد</th>
+			<th>جنسیت</th>
+			<th>آدرس</th>
+			<th>شهر</th>
+			<th>مدال</th>
+			<th>عکس</th>
+			<th>عملیات</th>
+		</tr>
+		</thead>
+
+		<tbody>
+
+		@foreach (var item in Model)
+		{
+
+			@if (!item.IsDeleted)
+			{
+				<tr>
+					@{
+						tableHasData = true;
+					}
+					<td>@(count++)</td>
+					<td>@item.Id</td>
+					<td>@item.FirstName</td>
+					<td>@item.LastName</td>
+					@if(item.BirthDate!=null){
+					<td>@item.BirthDate.ToPersianCalenderWithoutHour()</td>
+						}
+					else
+					{
+						<td></td>
+					}
+					<td>@item.Gender</td>
+					<td>@item.Address</td>
+					<td>@item.City</td>
+					<td>@item.Medal</td>
+
+						<td><img src="@item.ProfileImageUrl" style="width: 100px; height: auto" /></td>
+					<td>
+
+						<a asp-area="Admin" asp-controller="Vendor" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-info btn-round btn btn-danger">حذف</a>
+
+						<a asp-area="Admin" asp-controller="Vendor" asp-action="Update" class="btn btn-info btn-round" asp-route-id="@item.Id">ویرایش</a>
+
+					</td>
+				</tr>
+			}
+
+		}
+		
+
+		@if (!tableHasData)
+		{
+			<tr>
+				<td colspan="11">
+					هیچ داده ای یافت نشد!
+				</td>
+			</tr>
+		}
+		</tbody>
+	</table>
+</div>
+
+@section Scripts
+{
+	<script src="~/assets/plugins/data-table/js/jquery.dataTables.min.js"></script>
+	<script src="~/assets/js/pages/datatable.js"></script>
+}
+
+@section HeaderCSS
+{
+	<link href="~/assets/plugins/data-table/DataTables-1.10.16/css/jquery.dataTables.css" rel="stylesheet">
+
+}						
